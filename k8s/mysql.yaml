@@ -34,9 +34,14 @@ spec:
           ports:
             - containerPort: 3306
           volumeMounts:
-            - mountPath: /var/lib/mysql
-              name: mysql-storage
+            - name: init-script
+              mountPath: /docker-entrypoint-initdb.d
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
       volumes:
+        - name: init-script
+          configMap:
+            name: mysql-initdb
         - name: mysql-storage
           persistentVolumeClaim:
             claimName: mysql-pvc
