@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:5.7
-          imagePullPolicy: Always
+          image: mysql:8.0
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: "0000"
@@ -36,10 +35,8 @@ kind: Service
 metadata:
   name: mysql-service
 spec:
-  type: NodePort
+  selector:
+    app: mysql
   ports:
     - port: 3306
       targetPort: 3306
-      nodePort: 30306   # 클러스터 외부에서 접근할 포트
-  selector:
-    app: mysql
