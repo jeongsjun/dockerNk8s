@@ -1,13 +1,13 @@
-CREATE TABLE `post` (
-	`no` INT NOT NULL AUTO_INCREMENT,
-	`title` TEXT NULL,
-	`content` TEXT NULL,
+CREATE TABLE IF NOT EXISTS post (
+	no INT NOT NULL AUTO_INCREMENT,
+	title TEXT NULL,
+	content TEXT NULL,
 	PRIMARY KEY (`no`)
 )
 COLLATE='utf8mb4_uca1400_ai_ci'
 ;
 
-INSERT INTO `post` (`title`, `content`) VALUES
+INSERT INTO post (title, content) VALUES
 ('첫 번째 게시글', '이것은 첫 번째 게시글의 내용입니다. 테스트용으로 작성되었습니다.'),
 ('안녕하세요!', '게시판에 오신 것을 환영합니다. 자유롭게 글을 남겨주세요.'),
 ('공지사항', '이번 주 금요일에 서버 점검이 예정되어 있습니다.'),
