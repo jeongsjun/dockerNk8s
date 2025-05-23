@@ -6,7 +6,7 @@ metadata:
     ingress.kubernetes.io/rewrite-target: "/"
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
-  ingressClassName: "node"
+  ingressClassName: "nginx"
   rules:
     - host: nodeapp.192.168.56.61.sslip.io
       http:
@@ -15,7 +15,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: my-nginx
+                name: nodeapp
                 port:
                   number: 80
 ---
