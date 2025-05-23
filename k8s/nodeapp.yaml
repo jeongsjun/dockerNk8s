@@ -1,24 +1,3 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nodeapp
-  annotations:
-    ingress.kubernetes.io/rewrite-target: "/"
-    ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  ingressClassName: "nginx"
-  rules:
-    - host: nodeapp.192.168.56.61.sslip.io
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: nodeapp
-                port:
-                  number: 80
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodeapp
-          image: seungjunjeong/nodeapp:1.1 # Docker Hub에 푸시한 이미지
+          image: seungjunjeong/nodeapp:1.1
           ports:
             - containerPort: 80
 ---
@@ -49,6 +28,26 @@ spec:
   selector:
     app: nodeapp
   ports:
-  - port: 80
-    targetPort: 80
-
+    - port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nodeapp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx  # 여기서 IngressClass를 nginx로 설정
+  rules:
+    - host: nodeapp.192.168.56.61.sslip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nodeapp
+                port:
+                  number: 80
