@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: nodeapp
-          image: seungjunjeong/nodeapp:1.1 # Docker Hub에 푸시한 이미지
+          image: seungjunjeong/nodeapp:2.0 # Docker Hub에 푸시한 이미지
+          imagePullPolicy: Always # 항상 이미지를 다시 가져오도록 설정
           ports:
             - containerPort: 80
 ---
