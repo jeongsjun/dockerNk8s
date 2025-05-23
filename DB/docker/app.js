@@ -9,8 +9,8 @@ const path = require('path');
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-    host: 'mysql-service'
-    , port: 3306
+    host: '192.168.56.61'
+    , port: 30306
     , user: 'root'
     , password: '0000'
     , database: 'linux'
