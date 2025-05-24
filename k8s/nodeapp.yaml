@@ -16,7 +16,6 @@ spec:
       - name: my-nginx
         image: seungjunjeong/nodeapp:1.1
         imagePullPolicy: Always
-        command: ["/bin/sh", "-ec", "while :; do echo 'Server is run'; sleep 5 ; done"]
         ports:
         - containerPort: 80
 
