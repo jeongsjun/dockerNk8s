@@ -41,7 +41,19 @@ dockerNk8s/
   - Oracle VirtualBox
 
 ### ▶️ 실행
-#### 1. docker 이미지 업로드(본인 dockerhub에 업로드하고 싶다면)
+#### 1. kubernetes 배포
+```
+1. 깃 import
+git clone https://github.com/jeongsjun/dockerNk8s.git
+
+2. working directory 이동
+cd dockerNk8s/k8s/
+
+3. yaml 파일 적용
+k apply -f nodeapp.yaml
+```
+
+#### 2. docker 이미지 업로드(본인 dockerhub에 업로드하고 싶다면)
 1-1. DockerFile 기반으로 이미지 생성
 ```
 docker build -t nodeapp:1.1 -f Dockerfile.myApp .
@@ -56,16 +68,4 @@ docker tag nodeapp:1.1 <dockerhub 사용자명>/nodeapp:1.1
 
 3. 업로드
 docker push <dockerhub 사용자명>/nodeapp:1.1
-```
-
-#### 2. kubernetes 배포
-```
-1. 깃 import
-git clone https://github.com/jeongsjun/dockerNk8s.git
-
-2. working directory 이동
-cd dockerNk8s/k8s/
-
-3. yaml 파일 적용
-k apply -f nodeapp.yaml
 ```
